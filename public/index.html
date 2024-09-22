@@ -5,12 +5,54 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GlideNoJs</title>
-    <script src="../src/script/glide-no.js" defer></script>
+    <script src="../src/script/glide-no.js" defer type="module"></script>
 </head>
 <body>
-    <p glide-type="slider" glide-animation-duration="500">Test</p>
-    <p glide-type="carousel" glide-a="b"></p>
-    <p glide-type="carousel" glide-a="b"></p>
-    <p glide-type="carcccousel" glide-a="b"></p>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            background-color: beige;
+        }
+
+        .elements {
+            width: 800px;
+            height: 300px;
+        }
+
+        .element{
+            width: 650px;
+            height: 300px;
+            font-size: 30px;
+            font-weight: 500;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .one {
+            background-color: red;
+        }
+
+        .two {
+            background-color: green;
+        }
+
+        .three {
+            background-color: yellow;
+        }
+
+        .four {
+            background-color: blueviolet;
+        }
+    </style>
+    <div class="elements">
+        <div class="element one">1</div>
+        <div class="element two">2</div>
+        <div class="element three">3</div>
+        <div class="element four">4</div>
+    </div>
 </body>
 </html>

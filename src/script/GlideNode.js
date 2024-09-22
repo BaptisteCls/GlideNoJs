@@ -28,6 +28,11 @@ const configurableOptions = [
 export default class GlideNode {
     constructor(element) {
         this.name = element;
+        element.classList.add("glide");
+        const slides = this.#initSlides();
+        slides.append(element.childNodes);
+        element.innerHTML = '';
+        element.appendChild(slides);
     }
 
     getOptions() {
@@ -47,5 +52,19 @@ export default class GlideNode {
             result.push(new GlideNode(sliderElement));
         })
         return result;
+    }
+
+    #initSlides () {
+        const slides = document.createElement('div');
+        slides.classList.add('glide_slides');
+        slides.appendChild(this.#initTrack);
+        return slides;
+    }
+
+    #initTrack () {
+        const track = document.createElement('div');
+        track.classList.add('glide__track');
+        track.setAttribute('data-glide-el', 'track');
+        return track;
     }
 }
