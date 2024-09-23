@@ -29,6 +29,7 @@ const customOptions = {
     arrows : "Controls",
     swipe : "Swipe",
     keyboard : "Keyboard",
+    bullets : "Controls",
 }
 
 function createElementFromHTML(htmlString) {
@@ -45,6 +46,7 @@ export default class GlideNode {
 
     constructor(element) {
         this.glideElement = element;
+        this.glideCount = element.children.length;
 
         this.#glideClass = `glide-${GlideNode.glideNumber++}`;
         element.classList.add(this.#glideClass);
@@ -96,19 +98,28 @@ export default class GlideNode {
     }
 
     #initModules = {
-        Controls : () => {
+        arrows : () => {
             const arrows = createElementFromHTML(`
                 <div class="glide__arrows" data-glide-el="controls">
-                    <button class="glide__arrow glide__arrow--left" data-glide-dir="<">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M512 256A256 256 0 1 0 0 256a256 256 0 1 0 512 0zM271 135c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9l-87 87 87 87c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0L167 273c-9.4-9.4-9.4-24.6 0-33.9L271 135z"/></svg>
+                    <button class="glide__arrow inner glide__arrow--left" data-glide-dir="<">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="#ffffff" d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l192 192c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256 246.6 86.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-192 192z"/></svg>
                     </button>
-                    <button class="glide__arrow glide__arrow--right" data-glide-dir=">">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M0 256a256 256 0 1 0 512 0A256 256 0 1 0 0 256zM241 377c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l87-87-87-87c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0L345 239c9.4 9.4 9.4 24.6 0 33.9L241 377z"/></svg>
+                    <button class="glide__arrow inner glide__arrow--right" data-glide-dir=">">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="#ffffff" d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z"/></svg>
                     </button>
                 </div>
+
             `);
             this.glideElement.appendChild(arrows);
         },
+        bullets : () => {
+            let bullets = '<div class="glide__bullets inner" data-glide-el="controls[nav]">';
+            for (let i = 0; i < this.glideCount; i++)
+                bullets += `<button class="glide__bullet" data-glide-dir="=${i}"></button>`;
+            bullets += '</div>';
+            bullets = createElementFromHTML(bullets);
+            this.glideElement.appendChild(bullets);
+        }
     }
 
     #initOptions () {
@@ -123,9 +134,8 @@ export default class GlideNode {
             const htmlOption = `glide-${option.replace(/[A-Z]/g, str => '-' + str.toLowerCase())}`;
             const value = this.glideElement.getAttribute(htmlOption);
             if (value && value.toLowerCase() === 'true') {
-                console.log(this.#initModules['Controls'])
-                if(this.#initModules[module])
-                    this.#initModules[module]();
+                if(this.#initModules[option])
+                    this.#initModules[option]();
                 modules.push(module);
             }
         };
