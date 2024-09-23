@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GlideNoJs</title>
     <script src="../src/script/glide-no.js" defer type="module"></script>
+    <link rel="stylesheet" href="../src/style/glide.core.css" />
+    <link rel="stylesheet" href="../src/style/glide.theme.css" />
 </head>
 <body>
     <style>
@@ -48,7 +50,12 @@
             background-color: blueviolet;
         }
     </style>
-    <div class="elements">
+    <div class="elements"
+        glide-type="carousel"
+        glide-focus-at="center"
+        glide-autoplay="1500"
+        glide-arrows="true"
+    >
         <div class="element one">1</div>
         <div class="element two">2</div>
         <div class="element three">3</div>
