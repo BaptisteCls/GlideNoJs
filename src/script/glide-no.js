@@ -8,6 +8,7 @@ function getAllUsefullModules (names) {
         if (names.includes(name))
             result.name=module;
     }
+    console.log(result)
     return result;
 }
 
@@ -16,6 +17,5 @@ GlideNode.getAllNodes().forEach(element => {
     //console.log(element.getOptions())
     const slider = new Glide("." + element.getGlideClass(), element.getOptions());
     const modules = getAllUsefullModules(element.getCustomModules());
-    modules.anchors = Modules.Anchors
     slider.mount(modules);
 });

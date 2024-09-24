@@ -29,7 +29,7 @@ const customOptions = {
     arrows : "Controls",
     swipe : "Swipe",
     keyboard : "Keyboard",
-    bullets : "Controls",
+    dots : "Controls",
 }
 
 function createElementFromHTML(htmlString) {
@@ -112,13 +112,13 @@ export default class GlideNode {
             `);
             this.glideElement.appendChild(arrows);
         },
-        bullets : () => {
-            let bullets = '<div class="glide__bullets inner" data-glide-el="controls[nav]">';
+        dots : () => {
+            let dots = '<div class="glide__bullets inner" data-glide-el="controls[nav]">';
             for (let i = 0; i < this.glideCount; i++)
-                bullets += `<button class="glide__bullet" data-glide-dir="=${i}"></button>`;
-            bullets += '</div>';
-            bullets = createElementFromHTML(bullets);
-            this.glideElement.appendChild(bullets);
+                dots += `<button class="glide__bullet" data-glide-dir="=${i}"></button>`;
+            dots += '</div>';
+            dots = createElementFromHTML(dots);
+            this.glideElement.appendChild(dots);
         }
     }
 
@@ -132,8 +132,9 @@ export default class GlideNode {
         const modules = [];
         for (const [option, module] of Object.entries(customOptions)) {
             const htmlOption = `glide-${option.replace(/[A-Z]/g, str => '-' + str.toLowerCase())}`;
+
             const value = this.glideElement.getAttribute(htmlOption);
-            if (value && value.toLowerCase() === 'true') {
+            if (value) {
                 if(this.#initModules[option])
                     this.#initModules[option]();
                 modules.push(module);
