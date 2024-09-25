@@ -2507,6 +2507,7 @@ function Translate(Glide, Components, Events) {
          */
         set: function set(value) {
             var transform = mutator(Glide, Components).mutate(value);
+
             var translate3d = "translate3d(".concat(-1 * transform, "px, 0px, 0px)");
             Components.Html.wrapper.style.mozTransform = translate3d; // needed for supported Firefox 10-15
 
