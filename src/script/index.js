@@ -6,7 +6,7 @@ function getAllUsefullModules (names) {
     const result = {};
     for(const [name, module] of Object.entries(Modules)) {
         if (names.includes(name))
-            result.name=module;
+            result[name] = module;
     }
     console.log(result)
     return result;
