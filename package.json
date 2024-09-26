@@ -1,7 +1,7 @@
 {
-  "name": "glidenojs",
-  "version": "1.0.0",
-  "description": "glidenojs",
+  "name": "splidens",
+  "version": "1.0.1",
+  "description": "splidens",
   "main": "index.js",
   "scripts": {
     "build": "webpack"

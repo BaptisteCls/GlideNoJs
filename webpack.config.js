@@ -5,7 +5,7 @@ module.exports = {
     mode: 'production',
     entry: './src/script/index.js',
     output: {
-        filename: 'bundle.min.js',
+        filename: 'splidens.min.js',
         path: path.resolve(__dirname, 'build')
     },
     module: {

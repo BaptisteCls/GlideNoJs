@@ -1,34 +1,5 @@
-const configurableOptions = [
-    "type",
-    "focus",
-    "perView",
-    "keyboard",
-    "gap",
-    "autoplay",
-    "hoverpause",
-    "keyboard",
-    "bound",
-    "swipeThreshold",
-    "dragThreshold",
-    "perSwipe",
-    "touchRatio",
-    "touchAngle",
-    "autoWidth",
-    "rewind",
-    "rewindDuration",
-    "animationTimingFunc",
-    "waitForTransition",
-    "throttle",
-    "direction",
-    "peek",
-    "cloningRatio",
-]
-
-function createElementFromHTML(htmlString) {
-    let div = document.createElement('div');
-    div.innerHTML = htmlString.trim();
-    return div.firstChild;
-}
+import Splide from "../base/splide.esm.js";
+import splideOptions from "./splideOptions.js";
 
 export default class SplideNode {
     static splideNumber = 0;
@@ -66,6 +37,16 @@ export default class SplideNode {
         return result;
     }
 
+    mount() {
+        const slider = new Splide("." + this.getSplideClass(), this.getOptions());
+        slider.mount();
+        return slider;
+    }
+
+    static mountAllNodes() {
+        this.getAllNodes().forEach(node => node.mount());
+    }
+
     #initSlides () {
         const slides = document.createElement('div');
         slides.classList.add('splide__list');
@@ -85,7 +66,7 @@ export default class SplideNode {
 
     #initOptions () {
         const options = {};
-        configurableOptions.forEach( option=> {
+        splideOptions.forEach( option=> {
             const htmlOption = `splide-${option.replace(/[A-Z]/g, str => '-' + str.toLowerCase())}`;
             const value = this.splideElement.getAttribute(htmlOption);
             if (value) options[option] = value;
