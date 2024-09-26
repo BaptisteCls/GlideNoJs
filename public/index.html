@@ -19,12 +19,11 @@
         }
 
         .elements {
-            width: 800px;
             height: 300px;
+            width: 800px;
         }
 
         .element{
-            max-width: 650px;
             height: 300px;
             font-size: 30px;
             font-weight: 500;
@@ -32,30 +31,37 @@
             justify-content: center;
             align-items: center;
         }
-
         .one {
             background-color: red;
+            width: 200px;
         }
 
         .two {
             background-color: green;
+            width: 770px;
         }
 
         .three {
             background-color: yellow;
+            width: 300px;
         }
 
         .four {
             background-color: blueviolet;
+            width: 420px;
         }
     </style>
-    <ul class=" elements"
+    <div class="elements"
         splide-type="loop"
+        splide-focus="center"
+        splide-keyboard="global"
+        splide-gap="10px"
+        splide-auto-width="true"
     >
-        <li class=" element one">Slide 01</li>
-        <li class=" element two">Slide 02</li>
-        <li class=" element four">Slide 03</li>
-        <li class=" element three">Slide 04</li>
+        <div class=" element one">Slide 01</div>
+        <div class=" element two">Slide 02</div>
+        <div class=" element four">Slide 03</div>
+        <div class=" element three">Slide 04</div>
     </ul>
 </body>
 </html>
