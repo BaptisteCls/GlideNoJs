@@ -1,21 +1,7 @@
-import GlideNode from "./GlideNode.js";
-import Glide from "../base/glide.modular.esm.js";
-import * as Modules from "../base/glide.modular.esm.js";
+import SplideNode from "./SplideNode.js";
+import Splide from "../base/splide.esm.js";
 
-function getAllUsefullModules (names) {
-    const result = {};
-    for(const [name, module] of Object.entries(Modules)) {
-        if (names.includes(name))
-            result[name] = module;
-    }
-    console.log(result)
-    return result;
-}
-
-GlideNode.getAllNodes().forEach(element => {
-    //console.log("." + element.getGlideClass())
-    //console.log(element.getOptions())
-    const slider = new Glide("." + element.getGlideClass(), element.getOptions());
-    const modules = getAllUsefullModules(element.getCustomModules());
-    slider.mount(modules);
+SplideNode.getAllNodes().forEach(element => {
+    const slider = new Splide("." + element.getSplideClass(), element.getOptions());
+    slider.mount();
 });
