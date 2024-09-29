@@ -1,4 +1,4 @@
-import Splide from "../base/splide.esm.js";
+import Splide from '../base/splide.esm.js'
 import splideOptions from "./splideOptions.js";
 
 export default class SplideNode {

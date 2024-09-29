@@ -1,4 +1,4 @@
-export default splideOptions = [
+const splideOptions = [
     "type",
     "rewind",
     "speed",
@@ -24,3 +24,5 @@ export default splideOptions = [
     "trimSpace",
     "omitEnd",
 ];
+
+export default splideOptions;

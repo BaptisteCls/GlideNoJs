@@ -1,3 +1,3 @@
 import SplideNode from "./SplideNode.js";
 
-SplideNode.mountAllNodes();
+document.addEventListener('DOMContentLoaded', event => SplideNode.mountAllNodes());
